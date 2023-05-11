@@ -93,7 +93,9 @@ const ModalView = () => {
           <HStack>
             <Text className='flex-1 text-center font-bold'>
               Guest Info for{' '}
-              <Text className='text-red-800'>{tableDetail?.table_name}</Text>
+              <Text className='text-red-800'>
+                Table {tableDetail?.table_name}
+              </Text>
             </Text>
             <IconButton
               _icon={{

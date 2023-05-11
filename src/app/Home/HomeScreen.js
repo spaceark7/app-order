@@ -27,7 +27,6 @@ import ModalView from './component/ModalView'
 const HomeScreen = ({ navigation }) => {
   const [logout] = useLogoutMutation()
   const modal = useSelector(selectModal)
-  const dispatch = useDispatch()
 
   console.log('modal:', modal)
 
@@ -56,12 +55,12 @@ const HomeScreen = ({ navigation }) => {
   }
 
   const handleSectionChange = (section) => {
-    setSelectedSection(section.section_name)
+    setSelectedSection(section.name)
     setSelectedTable(section.tables)
   }
 
   useLayoutEffect(() => {
-    if (isSuccess) setSelectedSection(sections[0].section_name)
+    if (isSuccess) setSelectedSection(sections[0].name)
   }, [isSuccess])
 
   // ref
@@ -99,9 +98,11 @@ const HomeScreen = ({ navigation }) => {
             variant='filled'
           />
         </FormControl>
-        {isError && console.log('error:', error)}
+        {isError && console.log('error:', isError)}
+        {isLoading && console.log(isLoading)}
         {isLoading && console.log(isLoading)}
         {isFetching && console.log('fetching:', isFetching)}
+        {isSuccess && console.log('data:', sections)}
 
         {isLoading && (
           <View className='flex-row items-center flex-wrap gap-x-1 w-full'>
@@ -131,15 +132,13 @@ const HomeScreen = ({ navigation }) => {
                   <Button
                     key={index}
                     variant={
-                      selectedSection === section.section_name
-                        ? 'solid'
-                        : 'ghost'
+                      selectedSection === section.name ? 'solid' : 'ghost'
                     }
                     colorScheme='primary'
                     rounded='full'
                     onPress={() => handleSectionChange(section)}
                   >
-                    {`${section.section_name}`}
+                    {`${section.name}`}
                   </Button>
                 ))}
             </Button.Group>

@@ -13,17 +13,17 @@ const TableView = ({ table, itemWidth }) => {
   const dispatch = useDispatch()
 
   const handlePress = () => {
-    if (table.status) {
+    if (table.status !== 'AVAILABLE') {
       navigation.navigate('order', {
         tableId: table.id,
-        tableName: table.table_name,
+        tableName: table.no_table,
       })
     } else {
       dispatch(setOpenModal(true))
       dispatch(
         setTable({
           table_id: table.id,
-          table_name: table.table_name,
+          table_name: table.no_table,
         })
       )
     }
@@ -50,7 +50,7 @@ const TableView = ({ table, itemWidth }) => {
           <View className='h-36 w-full items-center justify-center p-4'>
             <View
               className={`${
-                table.status && 'bg-yellow-500'
+                table.status !== 'AVAILABLE' && 'bg-yellow-500'
               }  w-full h-full rounded-xl p-2 justify-between`}
             >
               <Text
@@ -58,13 +58,13 @@ const TableView = ({ table, itemWidth }) => {
                   table.status && 'text-red-800'
                 } text-right  text-lg font-bold`}
               >
-                {table.table_name}
+                Table {table.no_table}
               </Text>
               <View
                 className='w-full justify-center flex-row space-x-1'
                 alignItems='center'
               >
-                {table.status ? (
+                {table.status !== 'AVAILABLE' ? (
                   <>
                     <Icon
                       size={'sm'}

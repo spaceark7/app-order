@@ -8,7 +8,7 @@ const UserHeaderButton = () => {
   return (
     <HStack alignItems='center' space={3} py={4}>
       <Avatar size={'sm'} source={{ uri: user?.image }} />
-      <Text className='text-lg font-bold'>Hello, {user?.username}!</Text>
+      <Text className='text-lg font-bold'>Hello, {user?.name}!</Text>
     </HStack>
   )
 }

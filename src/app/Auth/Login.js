@@ -53,7 +53,7 @@ const Login = ({ navigation }) => {
   const Submit = async (data) => {
     try {
       const payload = await login({
-        email: data.email,
+        username: data.email,
         password: data.password,
       }).unwrap()
 
@@ -75,9 +75,9 @@ const Login = ({ navigation }) => {
           'Bad Connection'
       )
     }
-    console.log('data: ', logData)
-    console.log('status: ', status)
-    console.log('error: ', err)
+    // console.log('data: ', logData)
+    // console.log('status: ', status)
+    // console.log('error: ', err)
   }
 
   return (
@@ -114,10 +114,10 @@ const Login = ({ navigation }) => {
                     value: true,
                     message: 'Email cannot be empty',
                   },
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Invalid email address',
-                  },
+                  // pattern: {
+                  //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  //   message: 'Invalid email address',
+                  // },
                 }}
                 render={({ field: { onChange, onBlur, value } }) => (
                   <FormControl isInvalid={Boolean(errors.email)}>
